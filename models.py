@@ -10,6 +10,10 @@ class NearEarthObject(object):
         :param kwargs:    dict of attributes about a given Near Earth Object, only a subset of attributes used
         """
         # TODO: What instance variables will be useful for storing on the Near Earth Object?
+        self.id = kwargs.id
+        self.name = kwargs.name
+        self.orbits = kwargs.orbits
+        self.orbit_dates = kwargs.orbit_dates
 
     def update_orbits(self, orbit):
         """
@@ -20,6 +24,7 @@ class NearEarthObject(object):
         """
 
         # TODO: How do we connect orbits back to the Near Earth Object?
+
 
 
 class OrbitPath(object):
@@ -34,3 +39,6 @@ class OrbitPath(object):
         :param kwargs:    dict of attributes about a given orbit, only a subset of attributes used
         """
         # TODO: What instance variables will be useful for storing on the Near Earth Object?
+        self.name = kwargs.name
+        self.miss_km = kwargs.miss_km
+        self.orbit_date = kwargs.orbit_date
