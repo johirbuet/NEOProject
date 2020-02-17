@@ -1,6 +1,7 @@
 from models import OrbitPath, NearEarthObject
 
-
+import pandas as pd
+from datetime import datetime
 class NEODatabase(object):
     """
     Object to hold Near Earth Objects and their orbits.
@@ -16,6 +17,9 @@ class NEODatabase(object):
         """
         # TODO: What data structures will be needed to store the NearEarthObjects and OrbitPaths?
         # TODO: Add relevant instance variables for this.
+        self.filename = filename
+        self.orbits = {}
+        self.neos = {}
 
     def load_data(self, filename=None):
         """
@@ -34,5 +38,16 @@ class NEODatabase(object):
 
         # TODO: Load data from csv file.
         # TODO: Where will the data be stored?
+
+        df = pd.read_csv(filename)
+
+        for index, row in df.iterrows():
+            name = row['name']
+            id = row['id']
+            date = datetime.strptime(row['close_approach_date'], "%Y-%m-%d")
+            self.orbits[date] =
+            self.neos[name] =
+
+
 
         return None
