@@ -47,6 +47,11 @@ class OrbitPath(object):
         :param kwargs:    dict of attributes about a given orbit, only a subset of attributes used
         """
         # TODO: What instance variables will be useful for storing on the Near Earth Object?
-        self.name = kwargs.name
-        self.miss_km = kwargs.miss_km
-        self.orbit_date = kwargs.orbit_date
+        self.neo_name = kwargs.get('name', 'no name')
+        self.miss_distance_kilometers = float(kwargs.get('miss_distance_kilometers', 0))
+        self.close_approach_date = kwargs.get('close_approach_date', None)
+
+    def __repr__(self):
+        return f'OrbitPath name:{self.neo_name} orbit_date:{self.close_approach_date} \
+                                miss_distance_km:{self.miss_distance_kilometers}'
+
