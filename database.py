@@ -43,11 +43,20 @@ class NEODatabase(object):
         df = pd.read_csv(filename)
 
         for index, row in df.iterrows():
-            name = row['name']
-            id = row['id']
-            date = datetime.strptime(row['close_approach_date'], "%Y-%m-%d")
-            self.orbits[date] =
-            self.neos[name] =
+            print(row)
+            orbit_path = OrbitPath(**row)
+
+            if not self.neo_name.get(row['name'], None):
+                self.neo_name[row['name']] = NearEarthObject(**row)
+
+            near_earth_object = self.neo_name.get(row['name'], None)
+
+            near_earth_object.update_orbits(orbit_path)
+
+            if not self.neo_date.get(row['close_approach_date'], None):
+                self.neo_date[row['close_approach_date']] = []
+
+            self.neo_date[row['close_approach_date']].append(near_earth_object)
 
 
 
