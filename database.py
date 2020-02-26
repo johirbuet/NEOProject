@@ -18,8 +18,9 @@ class NEODatabase(object):
         # TODO: What data structures will be needed to store the NearEarthObjects and OrbitPaths?
         # TODO: Add relevant instance variables for this.
         self.filename = filename
-        self.orbits = {}
-        self.neos = {}
+        self.neo_name = {}
+        self.neo_date = {}
+
 
     def load_data(self, filename=None):
         """
