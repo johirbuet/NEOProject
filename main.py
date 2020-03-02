@@ -95,6 +95,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     var_args = vars(args)
+    print(var_args)
 
     # Load Data
     if args.filename:
@@ -118,13 +119,16 @@ if __name__ == '__main__':
 
     # Get Results
     try:
+        print(query_selectors)
         results = NEOSearcher(db).get_objects(query_selectors)
+        print(results)
     except UnsupportedFeature as e:
         print('Unsupported Feature; Write unsuccessful')
         sys.exit()
 
     # Output Results
     try:
+        print(results)
         result = NEOWriter().write(
             data=results,
             format=args.output,
@@ -133,7 +137,7 @@ if __name__ == '__main__':
         print(e)
         print('Write unsuccessful')
         sys.exit()
-
+    print(result)
     if result:
         print('Write successful.')
     else:

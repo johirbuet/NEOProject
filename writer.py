@@ -52,14 +52,16 @@ class NEOWriter(object):
                 diameter_min_kms = []
                 orbits = []
                 orbit_dates = []
-
+                print(data)
                 for neo_object in data:
+                    print(neo_object,"th")
                     ids.append(neo_object.id)
                     names.append(neo_object.name)
                     diameter_min_kms.append(neo_object.diameter_min_km)
                     orbits.append([orbit.neo_name for orbit in neo_object.orbits])
                     orbit_dates.append([orbit.close_approach_date for orbit in neo_object.orbits])
 
+                print(ids)
                 df = pd.DataFrame({'id': ids, 'name': names, 'diameter_min_km': diameter_min_kms,
                                    'orbits': orbits, 'orbit_dates': orbit_dates})
                 df.to_csv('data/neo_data_results.csv')

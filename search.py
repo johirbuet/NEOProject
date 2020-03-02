@@ -131,6 +131,7 @@ class Filter(object):
         # Takes a list of NearEarthObjects and applies the value of its filter operation to the results
         filtered_list = []
 
+        print(len(results), 'before filtering')
         for near_earth_object in results:
             operation = Filter.Operators.get(self.operation)
             field = Filter.Options.get(self.field)
@@ -142,7 +143,7 @@ class Filter(object):
             except Exception as exp:
                 if operation(str(value), str(self.value)):
                     filtered_list.append(near_earth_object)
-
+        print(len(filtered_list), 'After filtering')
         return filtered_list
 
 
@@ -180,6 +181,7 @@ class NEOSearcher(object):
 
         neos = []
 
+        print(self.date_search, self.date_search == DateSearch.between.name, date[0])
         if self.date_search == DateSearch.equals.name:
             neos = self.return_date_search_equal(self.neo_date, date)
         elif self.date_search == DateSearch.between.name:
@@ -190,6 +192,7 @@ class NEOSearcher(object):
             if selectedfilter.field == 'distance':
                 distance_filter = selectedfilter
                 continue
+            print(selectedfilter.field)
             neos = selectedfilter.apply(neos)
         orbits = self.return_orbit_paths_from_neos(neos)
 

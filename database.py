@@ -15,8 +15,6 @@ class NEODatabase(object):
         """
         :param filename: str representing the pathway of the filename containing the Near Earth Object data
         """
-        # TODO: What data structures will be needed to store the NearEarthObjects and OrbitPaths?
-        # TODO: Add relevant instance variables for this.
         self.filename = filename
         self.neo_name = {}
         self.neo_date = {}
@@ -37,13 +35,9 @@ class NEODatabase(object):
 
         filename = filename or self.filename
 
-        # TODO: Load data from csv file.
-        # TODO: Where will the data be stored?
-
         df = pd.read_csv(filename)
-
         for index, row in df.iterrows():
-            print(row)
+
             orbit_path = OrbitPath(**row)
 
             if not self.neo_name.get(row['name'], None):
@@ -58,6 +52,6 @@ class NEODatabase(object):
 
             self.neo_date[row['close_approach_date']].append(near_earth_object)
 
-
+        print(len(self.neo_date), len(self.neo_name))
 
         return None

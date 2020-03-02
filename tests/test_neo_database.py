@@ -112,6 +112,7 @@ class TestNEOSearchUseCases(unittest.TestCase):
         results = NEOSearcher(self.db).get_objects(query_selectors)
 
         # Confirm 10 results and 10 unique results
+        print(results)
         self.assertEqual(len(results), 10)
         neo_ids = list(filter(
             lambda neo: neo.diameter_min_km > 0.042 and neo.is_potentially_hazardous_asteroid, results)
